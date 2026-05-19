@@ -1,17 +1,16 @@
-import express from 'express';
+const express = require('express');
+const filmesRoutes = require('./routes/filmes.route');
+require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware para o servidor entender JSON
+// Middleware para permitir ler requisições com formato JSON
 app.use(express.json());
 
-// Rota inicial de teste
-app.get('/', (req, res) => {
-    res.send('Servidor da Locadora rodando adequadamente com ES Modules!');
-});
+// Acopla as rotas sob o prefixo /filmes
+app.use('/filmes', filmesRoutes);
 
-// Inicialização do servidor
 app.listen(PORT, () => {
-    console.log(`Servidor rodando com sucesso na porta ${PORT}`);
+  console.log(`Servidor rodando com sucesso na porta ${PORT}`);
 });
