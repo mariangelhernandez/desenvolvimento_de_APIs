@@ -10,6 +10,12 @@ export const animalRepository = {
           const sql = 'INSERT INTO (nome, especie, idade, status_saude) VALUES($1, $2, $3, $4) RETURNING *;'; 
           const res = await query(sql, [nome, especie, idade, status_saude]);
             return res.rows[0];
+    },
+
+    async findById(id) {
+        const res = await query('SELECT * FROM animal WHERE id = $1;', [id]);
+        return res.rows[0];
     }
+
 
 }

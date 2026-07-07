@@ -11,6 +11,10 @@ export const animalService = {
         }
         return await animalRepository.create(animalRequisicao);
 
+    },
+
+    async updateAnimal(id, animalRequisicao) {
+        const animalExistente = await animalRepository.findById(id);
     }
 }
         
