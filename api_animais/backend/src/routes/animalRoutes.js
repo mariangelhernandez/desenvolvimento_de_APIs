@@ -3,6 +3,7 @@ import { animalController } from "../controllers/animalController.js";
 
 const router = Router();
 
+
 router.get("/animals", animalController.getAll);
 router.post('/animals', animalController.create);
 router.get('/animals/:id', animalController.update);
