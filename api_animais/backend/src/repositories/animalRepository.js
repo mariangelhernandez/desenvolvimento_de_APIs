@@ -15,6 +15,12 @@ export const animalRepository = {
     async findById(id) {
         const res = await query('SELECT * FROM animal WHERE id = $1;', [id]);
         return res.rows[0];
+    },
+
+    async update(id, animal) {
+          const sql = 'UPDATE (nome, especie, idade, status_saude) VALUES($1, $2, $3, $4) RETURNING *;'; 
+          const res = await query(sql, [nome, especie, idade, status_saude]);
+          return res.rows[0];
     }
 
 

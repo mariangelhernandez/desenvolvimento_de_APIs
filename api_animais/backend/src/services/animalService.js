@@ -15,6 +15,10 @@ export const animalService = {
 
     async updateAnimal(id, animalRequisicao) {
         const animalExistente = await animalRepository.findById(id);
+        if(!animalExistente) {
+            throw new Error('Animal não encontrado');
+            return await animalRepository.update(id, animalRequisicao);
+        }
     }
 }
         
