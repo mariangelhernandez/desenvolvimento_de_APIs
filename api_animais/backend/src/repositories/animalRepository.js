@@ -1,4 +1,4 @@
-import { query } from "";
+import { query } from "../config/db.js";
 
 export const animalRepository = {
     async findAll() {
