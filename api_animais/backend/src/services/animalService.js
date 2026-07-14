@@ -5,6 +5,16 @@ export const animalService = {
         return await animalRepository.findAll();
     },
 
+    async getAnimal(id) {
+           const animalExistente = await animalRepository.findById(id);
+        if(!animalExistente) {
+            throw new Error('Animal não encontrado');
+        }
+
+        return animalExistente
+
+    },
+
     async createAnimal(animalRequisicao) {
         if(animalRequisicao.idade < 0) {
             throw new Error('Idade do animal tem que ser maior do que 0.')
@@ -19,6 +29,15 @@ export const animalService = {
             throw new Error('Animal não encontrado');
             return await animalRepository.update(id, animalRequisicao);
         }
-    }
+    },
+
+    async patchAnimal(id, animalRequisicao) {
+        const animalExistente = await animalRepository.findById(id);
+        if(!animalExistente) {
+            throw new Error('Animal não encontrado');
+        }
+        return await animalRepository.patch(id, animalRequisicao);
+    },
+     
 }
         
