@@ -21,8 +21,6 @@ export const animalController = {
 
  },
 
- 
-
     async create(req, res) {
         try {
             const novoAnimal = await animalService.createAnimal(req.body);
@@ -55,17 +53,35 @@ export const animalController = {
     }, 
     
     async delete(req, res) {
-        try {
-         const animalDeletado = await animalService.deleteAnimal(req.params.id);
-         res.json({
-            message: 'Animal removido com sucesso do ZOO:' ${animalDeletado.nome}
-         });
-        }catch (error) {
-            const status = error.message === "Animal não encontrado" ? 404 : 400;
-            res.status(status).json({error: error.message });
-        }
-    },
+    try {
+        const animalDeletado = await animalService.deleteAnimal(req.params.id);
+        
+        res.json({
+            message: `Animal removido com sucesso do ZOO: ${animalDeletado.nome}`
+        });
+
+    } catch (error) {
+        const status = error.message === "Animal não encontrado" ? 404 : 400;
+        res.status(status).json({ error: error.message });
+    }
+  },
+  
+
+  async delete(req, res) {
+    try {
+        const animalDeletado = await animalService.deleteAnimal(req.params.id);
+        
+        res.json({
+            message: `Animal removido com sucesso do ZOO: ${animalDeletado.nome}`
+        });
+
+    } catch (error) {
+        const status = error.message === "Animal não encontrado" ? 404 : 400;
+        res.status(status).json({ error: error.message });
+    }
+  },
 }
+
 
 
 
