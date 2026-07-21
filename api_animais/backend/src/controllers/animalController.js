@@ -1,4 +1,4 @@
-import  animalService  from "../services/animalService.js";
+import  { animalService }  from "../services/animalService.js";
 
 export const animalController = {
     async getAll(req, res) {
@@ -53,21 +53,6 @@ export const animalController = {
     }, 
     
     async delete(req, res) {
-    try {
-        const animalDeletado = await animalService.deleteAnimal(req.params.id);
-        
-        res.json({
-            message: `Animal removido com sucesso do ZOO: ${animalDeletado.nome}`
-        });
-
-    } catch (error) {
-        const status = error.message === "Animal não encontrado" ? 404 : 400;
-        res.status(status).json({ error: error.message });
-    }
-  },
-  
-
-  async delete(req, res) {
     try {
         const animalDeletado = await animalService.deleteAnimal(req.params.id);
         

@@ -38,6 +38,14 @@ export const animalService = {
         }
         return await animalRepository.patch(id, animalRequisicao);
     },
+
+    async deleteAnimal (id) {
+        const animalExistente = await animalRepository.findById(id);
+        if(!animalExistente) {
+            throw new Error('Animal não encontrado');
+        }
+        return await animalRepository.delete(id, animalRequisicao);
+    }
      
 }
         
